@@ -186,8 +186,7 @@ export const SkillSearchPlugin: Plugin = async ({ directory }) => {
     "experimental.chat.system.transform": async (input, output) => {
       // Skip non-agentic models (title, summary, compaction agents)
       if (!input.model?.capabilities?.toolcall) return
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- tools may exist at runtime but not in type
-      if (!(input as any).tools?.length) return
+      if (!input.sessionID) return
       output.system.push(
         "<important>\n" +
         "Before executing any non-trivial task, use `skill_search` with multiple relevant keywords to discover matching skills. " +
