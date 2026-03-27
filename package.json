@@ -1,6 +1,6 @@
 {
   "name": "opencode-skill-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "BM25-powered skill search plugin for OpenCode — discover and load agent skills by keyword",
   "type": "module",
   "main": "dist/index.js",
