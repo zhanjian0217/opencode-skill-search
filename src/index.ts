@@ -85,8 +85,16 @@ function scanSkillsFromFS(directory: string): IndexEntry[] {
   const entries: IndexEntry[] = []
   const home = process.env.HOME ?? ""
   const skillDirs = [
+    // OpenCode native
     join(directory, ".opencode", "skills"),
+    join(home, ".config", "opencode", "skills"),
+    // Claude-compatible
+    join(directory, ".claude", "skills"),
+    join(home, ".claude", "skills"),
+    // Agent-compatible
+    join(directory, ".agents", "skills"),
     join(home, ".agents", "skills"),
+    // Installed skill packs
     join(home, ".cache", "opencode", "node_modules", "superpowers", "skills"),
   ]
   for (const dir of skillDirs) {

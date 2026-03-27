@@ -1,3 +1,5 @@
+[English](./README.md)
+
 # opencode-skill-search
 
 基於 BM25 排序的 [OpenCode](https://github.com/opencode-ai/opencode) skill 搜尋 plugin — 用關鍵字快速找到並載入 agent skills。
@@ -30,8 +32,12 @@ Plugin 會在以下目錄中尋找 `SKILL.md` 檔案：
 
 | 目錄 | 來源 |
 |------|------|
-| `<專案>/.opencode/skills/` | 專案本地 skills |
-| `~/.agents/skills/` | 使用者全域 skills |
+| `<專案>/.opencode/skills/` | 專案 OpenCode |
+| `~/.config/opencode/skills/` | 全域 OpenCode |
+| `<專案>/.claude/skills/` | 專案 Claude 相容 |
+| `~/.claude/skills/` | 全域 Claude 相容 |
+| `<專案>/.agents/skills/` | 專案 Agent 相容 |
+| `~/.agents/skills/` | 全域 Agent 相容 |
 | `~/.cache/opencode/node_modules/superpowers/skills/` | 已安裝的 skill 套件 |
 
 ## 使用方式

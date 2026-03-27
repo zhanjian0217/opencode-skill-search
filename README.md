@@ -1,3 +1,5 @@
+[繁體中文](./README.zh-TW.md)
+
 # opencode-skill-search
 
 BM25-powered skill search plugin for [OpenCode](https://github.com/opencode-ai/opencode) — discover and load agent skills by keyword.
@@ -30,8 +32,12 @@ The plugin looks for `SKILL.md` files in these directories:
 
 | Directory | Source |
 |-----------|--------|
-| `<project>/.opencode/skills/` | Project-local skills |
-| `~/.agents/skills/` | User-global skills |
+| `<project>/.opencode/skills/` | Project OpenCode |
+| `~/.config/opencode/skills/` | Global OpenCode |
+| `<project>/.claude/skills/` | Project Claude-compatible |
+| `~/.claude/skills/` | Global Claude-compatible |
+| `<project>/.agents/skills/` | Project Agent-compatible |
+| `~/.agents/skills/` | Global Agent-compatible |
 | `~/.cache/opencode/node_modules/superpowers/skills/` | Installed skill packs |
 
 ## Usage
