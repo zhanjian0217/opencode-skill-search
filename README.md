@@ -2,7 +2,7 @@
 
 # opencode-skill-search
 
-BM25-powered skill search plugin for [OpenCode](https://github.com/opencode-ai/opencode) — discover and load agent skills by keyword.
+BM25-powered skill search plugin for [OpenCode](https://github.com/anomalyco/opencode) — discover and load agent skills by keyword.
 
 ## Why?
 

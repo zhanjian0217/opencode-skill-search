@@ -2,7 +2,7 @@
 
 # opencode-skill-search
 
-基於 BM25 排序的 [OpenCode](https://github.com/opencode-ai/opencode) skill 搜尋 plugin — 用關鍵字快速找到並載入 agent skills。
+基於 BM25 排序的 [OpenCode](https://github.com/anomalyco/opencode) skill 搜尋 plugin — 用關鍵字快速找到並載入 agent skills。
 
 ## 為什麼需要？
 
