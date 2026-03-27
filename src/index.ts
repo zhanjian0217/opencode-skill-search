@@ -8,20 +8,10 @@ const IMPORTANT_SYSTEM_PROMPT =
   "Always prefer loading a matching skill over handling the task from scratch.\n" +
   "</important>"
 
-const AUXILIARY_AGENTS = new Set(["title", "summary", "compaction"])
-
-function appendSystemPrompt(existing?: string): string {
-  if (existing?.includes("use `skill_search` with multiple relevant keywords")) {
-    return existing
-  }
-  return existing ? `${existing}\n\n${IMPORTANT_SYSTEM_PROMPT}` : IMPORTANT_SYSTEM_PROMPT
-}
-
 // ─── Plugin Entry ────────────────────────────────────────────────────────────
 export const SkillSearchPlugin: Plugin = async ({ directory }) => {
   const skillIndex = new BM25Index()
   let skillsReady = false
-  const injectedSessions = new Set<string>()
 
   const ensureSkills = () => {
     if (skillsReady) return
@@ -33,12 +23,6 @@ export const SkillSearchPlugin: Plugin = async ({ directory }) => {
   }
 
   return {
-    event: async (input) => {
-      if (input.event.type === "session.deleted") {
-        injectedSessions.delete(input.event.properties.info.id)
-      }
-    },
-
     tool: {
       skill_search: tool({
         description:
@@ -73,13 +57,10 @@ export const SkillSearchPlugin: Plugin = async ({ directory }) => {
       }),
     },
 
-    "chat.message": async (input, output) => {
-      const agent = input.agent ?? output.message.agent
-      if (agent && AUXILIARY_AGENTS.has(agent)) return
-      if (output.message.tools && !output.message.tools.skill_search) return
-      if (injectedSessions.has(input.sessionID)) return
-      output.message.system = appendSystemPrompt(output.message.system)
-      injectedSessions.add(input.sessionID)
+    "experimental.chat.system.transform": async (input, output) => {
+      if (!input.model?.capabilities?.toolcall) return
+      if (!input.sessionID) return
+      output.system.push(IMPORTANT_SYSTEM_PROMPT)
     },
 
     "tool.definition": async (input, output) => {
